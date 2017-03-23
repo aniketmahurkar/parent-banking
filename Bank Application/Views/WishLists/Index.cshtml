@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Bank_Application.Models.WishList>
+
+@{
+    ViewBag.Title = "Wishlist";
+}
+
+<h2>Wishlist Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.RecipientEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Purchased)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.url)
+        </th>
+        <th></th>
+    </tr>
+@if (Request.IsAuthenticated == true) 
+{
+    foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account.RecipientEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAdded)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Purchased)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.url)
+        </td>
+        <td>
+            @if (User.IsInRole("Parent"))
+            {
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            }
+            
+            |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+            |
+            @if (User.IsInRole("Parent"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            }
+        </td>
+    </tr>
+    }
+}
+</table>

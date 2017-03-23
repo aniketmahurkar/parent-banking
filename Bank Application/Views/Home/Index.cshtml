@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>HAPPY BANKING</h1>
+    <p>This application provides a great way to keep a track on your child's account and
+    spendings</p>
+ </div>
+@if (Request.IsAuthenticated == false)
+{
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            Get started by creating an account with us
+        </p>
+        <p><a class="btn btn-default" href="http://localhost:51924/Account/Register">Register &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Existing Customer</h2>
+        <p>Customers already registered can sign in and proceed with their net banking facility</p>
+        <p><a class="btn btn-default" href="http://localhost:51924/Account/Login">Sign In &raquo;</a></p>
+    </div>
+    
+</div>
+}
